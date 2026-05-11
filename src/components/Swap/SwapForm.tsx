@@ -6,7 +6,7 @@ import { useV4Swap } from '../../hooks/useV4Swap'
 import { useWallet } from '../../hooks/useWallet'
 import { ArrowDown } from '../shared/icons'
 import { TestPoolDeployer } from './TestPoolDeployer'
-import { DeployedPoolsList, addDeployedPool, DeployedPool } from './DeployedPoolsList'
+import { DeployedPoolsList, addDeployedPool } from './DeployedPoolsList'
 
 const Container = styled.div`
   display: flex;
@@ -349,7 +349,7 @@ export function SwapForm() {
             networkName: network?.name || 'Ethereum',
             timestamp: Date.now()
           };
-          addDeployedPool(newPool);
+          addDeployedPool(newPool.poolId);
         }
       }
     } catch (error: any) {
@@ -406,9 +406,9 @@ export function SwapForm() {
       networkName: network?.name || 'Ethereum',
       timestamp: Date.now()
     };
-    addDeployedPool(newPool);
+    addDeployedPool(newPool.poolId);
   }
-  
+
   // Handle pool selection from the deployed pools list
   const handleSelectPool = (poolKey: PoolKey | string) => {
     let parsedPoolKey: PoolKey;
